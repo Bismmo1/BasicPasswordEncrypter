@@ -1,0 +1,37 @@
+import random
+import string
+
+    # Generates a Random Password, You can set Password length and characters
+
+def generate_password(length=8):
+    characters = string.ascii_letters + string.digits + "!@#$%*()?"
+    password = ''.join(random.choice(characters) for _ in range(length))
+    return password
+    
+    # Encrypts password 
+
+def encrypt_password(password, encryptor):
+    encrypted_password = ''
+    for char in password:
+        encrypted_char = chr(ord(char) ^ encryptor)
+        encrypted_password += encrypted_char
+    return encrypted_password
+
+    # Decrypts password and attempts to brute force it.
+
+def main():
+    min_length = 8
+    max_length = 8
+
+    length = random.randint(min_length, max_length)
+    password = generate_password(length)
+    encryptor = random.randint(1, 255)
+
+    encrypted_password = encrypt_password(password, encryptor)
+
+    print("Generated Password:", password)
+    print("Encryptor:", encryptor)
+    print("Encrypted Password:", encrypted_password)
+
+if __name__ == '__main__':
+    main()
